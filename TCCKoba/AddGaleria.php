@@ -28,39 +28,69 @@ error_reporting(E_ALL);
     body {
       background: #fff3e0;
     }
-    .container {
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    .main-container {
       margin-top: 40px;
     }
-    img {
+
+    #imagePreview {
       max-width: 100%;
+      max-height: 400px;
+      display: none;
+      margin-top: 20px;
     }
   </style>
 </head>
 
 <body>
-<?php include "Navbar.php"; ?>
 
-<div class="container">
-  <h4 class="center-align">Adicionar imagem à galeria</h4>
+<div class="page-wrapper">
 
-  <div class="card">
-    <div class="card-content">
+  <?php include "Navbar.php"; ?>
 
-      <input type="file" id="inputImage" accept="image/*" required>
+  <main>
+    <div class="container main-container">
+      <h4 class="center-align">Adicionar imagem à galeria</h4>
 
-      <div style="margin-top:20px;">
-        <img id="imagePreview">
+      <div class="card">
+        <div class="card-content center-align">
+
+          <input type="file" id="inputImage" accept="image/*">
+
+          <img id="imagePreview">
+
+          <br><br>
+
+          <button id="cropBtn" type="button" class="btn green">
+            Salvar imagem
+          </button>
+
+          <form id="formUpload" method="POST">
+            <input type="hidden" name="imagem_base64" id="imagem_base64">
+          </form>
+
+        </div>
       </div>
-
-      <br>
-      <button id="cropBtn" class="btn green">Salvar imagem</button>
-
-      <form id="formUpload" method="POST">
-        <input type="hidden" name="imagem_base64" id="imagem_base64">
-      </form>
-
     </div>
-  </div>
+  </main>
+
+  <?php include "footer.php"; ?>
+
 </div>
 
 <!-- Scripts -->
@@ -75,32 +105,45 @@ const image = document.getElementById('imagePreview');
 const cropBtn = document.getElementById('cropBtn');
 const base64Input = document.getElementById('imagem_base64');
 
-input.addEventListener('change', (e) => {
+document.addEventListener('DOMContentLoaded', function() {
+  M.Sidenav.init(document.querySelectorAll('.sidenav'));
+});
+
+// Quando escolhe a imagem
+input.addEventListener('change', function (e) {
   const file = e.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
-  reader.onload = () => {
+  reader.onload = function () {
     image.src = reader.result;
-    cropper && cropper.destroy();
+    image.style.display = 'block';
+
+    if (cropper) {
+      cropper.destroy();
+    }
 
     cropper = new Cropper(image, {
-      aspectRatio: 2 / 1, // 800x600
+      aspectRatio: 4 / 3, // ajuste se quiser
       viewMode: 1
     });
   };
   reader.readAsDataURL(file);
 });
 
-cropBtn.addEventListener('click', () => {
-  if (!cropper) return;
+// Botão salvar
+cropBtn.addEventListener('click', function () {
+  if (!cropper) {
+    M.toast({html: 'Selecione uma imagem primeiro'});
+    return;
+  }
 
   const canvas = cropper.getCroppedCanvas({
     width: 800,
     height: 600
   });
 
-  base64Input.value = canvas.toDataURL("image/png");
+  base64Input.value = canvas.toDataURL('image/png');
   document.getElementById('formUpload').submit();
 });
 </script>

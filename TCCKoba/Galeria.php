@@ -39,10 +39,10 @@
     .btn-large {
       margin: 10px;
     }
-.input-field label{
+    .input-field label{
      color: #000;
       
-   }
+    }
     .noticia-destaque img {
       width: 100%;
       border-radius: 8px;
@@ -69,64 +69,91 @@
     .mais-noticias a:hover {
       text-decoration: underline;
     }
+    html, body {
+    height: 100%;
+    margin: 0;
+    }
+
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1 0 auto;
+    }
+
+    footer {
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
-<?php include "Navbar.php"; ?>
+
+<div class="page-wrapper">
+
+  <?php include "Navbar.php"; ?>
+
+  <main class="content">
     <!-- Galeria -->
-  <section id="Galeria" class="orange lighten-5">
-  <div class="container">
-    <h4 class="center-align">Galeria Panatinaikos</h4>
+    <section id="Galeria" class="orange lighten-5">
+      <div class="container">
+        <h4 class="center-align">Galeria Panatinaikos</h4>
 
-    <div class="row center-align">
-      <?php
-      $sql = "SELECT * FROM galeria ORDER BY id DESC";
-      $resultado = mysqli_query($conexao, $sql);
+        <div class="row center-align">
+          <?php
+          $sql = "SELECT * FROM galeria ORDER BY id DESC";
+          $resultado = mysqli_query($conexao, $sql);
 
-      while ($img = mysqli_fetch_assoc($resultado)) {
-      ?>
-        <div class="col s12 m3">
-          <div class="card hoverable">
+          while ($img = mysqli_fetch_assoc($resultado)) {
+          ?>
+            <div class="col s12 m3">
+              <div class="card hoverable">
+                <div class="card-image">
+                  <img 
+                    src="<?= $img['imagem'] ?>" 
+                    class="modal-trigger"
+                    data-target="modal<?= $img['id'] ?>"
+                    style="height:250px; object-fit:cover; cursor:pointer;"
+                  >
 
-            <div class="card-image">
-              <img 
-                src="<?= $img['imagem'] ?>" 
-                class="modal-trigger"
-                data-target="modal<?= $img['id'] ?>"
-                style="height:250px; object-fit:cover; cursor:pointer;"
-              >
-
-              <?php if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'admin') { ?>
-                <a 
-                  href="ExcluirGaleria.php?id=<?= $img['id'] ?>" 
-                  class="btn-floating halfway-fab red"
-                  onclick="return confirm('Excluir esta imagem?')"
-                >
-                  <i class="material-icons">delete</i>
-                </a>
-              <?php } ?>
+                  <?php if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'admin') { ?>
+                    <a 
+                      href="ExcluirGaleria.php?id=<?= $img['id'] ?>" 
+                      class="btn-floating halfway-fab red"
+                      onclick="return confirm('Excluir esta imagem?')"
+                    >
+                      <i class="material-icons">delete</i>
+                    </a>
+                  <?php } ?>
+                </div>
+              </div>
             </div>
 
-          </div>
-        </div>
+            <!-- MODAL -->
+            <div id="modal<?= $img['id'] ?>" class="modal">
+              <div class="modal-content center-align">
+                <img src="<?= $img['imagem'] ?>" style="max-width:100%; max-height:80vh;">
+              </div>
+            </div>
 
-        <!-- MODAL -->
-        <div id="modal<?= $img['id'] ?>" class="modal">
-          <div class="modal-content center-align">
-            <img src="<?= $img['imagem'] ?>" style="max-width:100%; max-height:80vh;">
-          </div>
+          <?php } ?>
         </div>
+      </div>
+    </section>
+  </main>
 
-      <?php } ?>
-    </div>
-  </div>
-</section>
- 
+  <?php include "footer.php"; ?>
+
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var modals = document.querySelectorAll('.modal');
   M.Modal.init(modals);
 });
 </script>
+
 </body>
 </html>

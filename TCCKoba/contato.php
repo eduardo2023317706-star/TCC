@@ -63,9 +63,28 @@
     .mais-noticias a:hover {
       text-decoration: underline;
     }
+    html, body {
+    height: 100%;
+    margin: 0;
+    }
+
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1 0 auto;
+    }
+
+    footer {
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
+  <div class="page-wrapper">
 <?php
       include "Navbar.php";
 
@@ -93,7 +112,8 @@
   </section>
       </div>
     </div>
-  </footer>
+<?php include "footer.php"; ?>
+  </div>
 
 </body>
 </html>

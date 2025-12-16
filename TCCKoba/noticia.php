@@ -62,7 +62,9 @@ $dataBrasileira = date('d/m/Y H:i', strtotime($noticia['Datapubli']));
     <i class="material-icons left">arrow_back</i> Voltar
   </a>
 </div>
-
+<?php
+ include "footer.php"; 
+?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/materialize.js"></script>
 </body>

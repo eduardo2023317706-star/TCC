@@ -80,6 +80,34 @@
       <div class="col s4"><h5>3</h5><p>Treinadores Profissionais</p></div>
     </div>
   </div>
+ <section id="Nós" class="container">
+  <h4 class="center-align">Nós</h4>
+
+  <div class="row">
+    <div class="col s12 m8 offset-m2">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"></span>
+
+          <h6>
+            O Panatinaikos Basquete Uruguaiana é um clube esportivo sem fins financeiros,
+            criado com o objetivo de promover o basquete como ferramenta de inclusão social,
+            formação cidadã e desenvolvimento esportivo na cidade de Uruguaiana.
+            <br><br>
+            Desde sua criação, o Panatinaikos Basquete Uruguaiana tem buscado fortalecer o esporte local,
+            incentivando a participação em treinamentos, eventos e competições, sempre priorizando
+            o crescimento humano dos atletas acima de resultados financeiros.
+            <br><br>
+            Mais do que formar atletas, o Panatinaikos Basquete Uruguaiana trabalha para formar cidadãos,
+            utilizando o basquete como instrumento de transformação, integração e valorização do esporte
+            em Uruguaiana.
+  </h6>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Programas -->
    <section id="Programas" >
@@ -182,13 +210,9 @@
  
 
   <!-- Footer -->
-   <footer class="page-footer green">
-    <div class="container">
-      <div class="row">
-         <!-- Contato -->
-        <section id="contato" class="container">
-    <h4><a href="contato.php" class="center-align">Fale Conosco</a></h4>
-  </footer>
+   <?php 
+   include "footer.php"; 
+   ?>
 
 
 

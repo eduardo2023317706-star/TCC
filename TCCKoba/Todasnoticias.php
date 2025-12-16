@@ -91,6 +91,20 @@ include "ConectaBD.php";
       <a href="noticia.php?id=<?= $linha['ID'] ?>" class="green-text">
         Ler mais
       </a>
+      <?php if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'admin') { ?>
+  <div style="margin-top:10px;">
+    <a href="EditarNoticia.php?id=<?= $linha['ID'] ?>" 
+       class="btn-small blue">
+      <i class="material-icons left">edit</i>Editar
+    </a>
+
+    <a href="ExcluirNoticia.php?id=<?= $linha['ID'] ?>" 
+       class="btn-small red"
+       onclick="return confirm('Tem certeza que deseja excluir esta notícia?')">
+      <i class="material-icons left">delete</i>Excluir
+    </a>
+  </div>
+<?php } ?>
     </div>
 
   </div>
@@ -98,7 +112,9 @@ include "ConectaBD.php";
   <?php endwhile; ?>
 
 </div>
-
+<?php
+ include "footer.php"; 
+?>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="css/materialize.js"></script>
 </body>

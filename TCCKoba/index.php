@@ -147,7 +147,9 @@ if (count($noticias) > 0):
   
   <!-- Footer -->
 
-
+<?php
+ include "footer.php"; 
+?>
 
 
   <!--  Scripts-->
