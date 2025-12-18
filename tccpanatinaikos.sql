@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 30/10/2025 às 02:27
+-- Tempo de geração: 18/12/2025 às 14:23
 -- Versão do servidor: 9.1.0
 -- Versão do PHP: 8.3.14
 
@@ -20,20 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `tccpanatinaikos`
 --
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `administrador`
---
-
-DROP TABLE IF EXISTS `administrador`;
-CREATE TABLE IF NOT EXISTS `administrador` (
-  `ID` int NOT NULL AUTO_INCREMENT,
-  `Usuario` varchar(255) NOT NULL,
-  `Senha` varchar(255) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -59,6 +45,18 @@ INSERT INTO `escalação` (`ID`, `JogoID`, `JogadorID`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `galeria`
+--
+
+DROP TABLE IF EXISTS `galeria`;
+CREATE TABLE IF NOT EXISTS `galeria` (
+  `id` int NOT NULL,
+  `imagem` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -122,7 +120,37 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `tags` varchar(255) NOT NULL COMMENT 'vai ajudar nas buscas',
   `Imagem` varchar(255) NOT NULL COMMENT 'URL da imagem vinculada a noticia',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `noticias`
+--
+
+INSERT INTO `noticias` (`ID`, `Titulo`, `Conteudo`, `Datapubli`, `tags`, `Imagem`) VALUES
+(1, 'Foto de teste', 'Essa é uma foto de teste para a apresentação da ursula', '2025-12-16', 'ursula, foto, teste', 'imagens/6941a888c4321.png'),
+(2, 'Foto de teste', 'ahhhhhhhhhhhhhhhhhhhhhh', '2025-12-16', 'ursula, foto, teste', 'imagens/6941a89e62313.png');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(100) NOT NULL,
+  `senha` varchar(100) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`ID`, `usuario`, `senha`, `tipo`) VALUES
+(1, 'admin', 'pana123', 'admin');
 
 --
 -- Restrições para tabelas despejadas

@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #fff;
+      background-color: #fff3e0;
       font-family: 'Poppins', sans-serif;
     }
     .login-card {
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       padding-left: 12px !important;
     }
     .btn-login {
-      background-color: #8b80f9 !important;
+      background-color: green !important;
       width: 100%;
       font-weight: 600;
       border-radius: 5px;

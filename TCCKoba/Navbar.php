@@ -36,7 +36,6 @@
           </a>
         </li>
       <?php } else { ?>
-        <li><a href="Login.php">Login</a></li>
       <?php } ?>
     </ul>
 

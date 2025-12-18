@@ -16,6 +16,9 @@
    <style>
     body {
       background-color: #fff3e0;
+        display: flex;
+    min-height: 100vh;
+    flex-direction: column;
     }
     .hero {
       background-color: #ff9800;
@@ -63,6 +66,9 @@
     .mais-noticias a:hover {
       text-decoration: underline;
     }
+     main {
+    flex: 1 0 auto;
+  }
   </style>
 </head>
 <body>
